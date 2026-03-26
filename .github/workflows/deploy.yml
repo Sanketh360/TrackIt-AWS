@@ -2,35 +2,42 @@ name: Docker build -> push -> deploy
 
 on:
   push:
-    branches: [ "main" ]
- 
+    branches: ["main"]
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name : Setup java
+  
+    - name: Checkout code
       uses: actions/checkout@v4
-      
-    - name: Build the Docker image
+
+  
+    - name: Setup Java
       uses: actions/setup-java@v5
       with:
-          distribution: 'temurin' # See 'Supported distributions' for available options
-          java-version: '21'
+        distribution: 'temurin'
+        java-version: '21'
 
-    - name : Build jar
-      run : ./mvnw clean package DskipTests
-      
-    - name : Login to docker hub
-      run : docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-      
-    - name : Build Docker image
-      run : docker build -t ${{ secrets.DOCKER_USERNAME }}/spring-boot-trackit:latest
-      
-    - name : Push the image to docker hub
-      run : docker push ${{ secrets.DOCKER_USERNAME }}/spring-boot-trackit:latest
-    
-    - name : SSH and Deploy in EC2
+  
+    - name: Build jar
+      run: ./mvnw clean package -DskipTests
+
+  
+    - name: Login to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+   
+    - name: Build Docker image
+      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/spring-boot-trackit:latest .
+
+  
+    - name: Push Docker image
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/spring-boot-trackit:latest
+
+   
+    - name: SSH and Deploy in EC2
       uses: appleboy/ssh-action@v1
       with:
         host: ${{ secrets.EC2_HOST }}
@@ -40,9 +47,10 @@ jobs:
           docker stop spring-trackit || true
           docker rm spring-trackit || true
           docker pull ${{ secrets.DOCKER_USERNAME }}/spring-boot-trackit:latest
-          docker run -d --name spring-trackit -p 9090:9090 ${{ secrets.DOCKER_USERNAME }}/spring-boot-trackit:latest 
-    
-
-      
-
-       
+          docker run -d \
+            --name spring-trackit \
+            -p 9090:9090 \
+            -e SPRING_DATASOURCE_URL="${{ secrets.DB_URL }}" \
+            -e SPRING_DATASOURCE_USERNAME="${{ secrets.DB_USERNAME }}" \
+            -e SPRING_DATASOURCE_PASSWORD="${{ secrets.DB_PASSWORD }}" \
+            ${{ secrets.DOCKER_USERNAME }}/spring-boot-trackit:latest
