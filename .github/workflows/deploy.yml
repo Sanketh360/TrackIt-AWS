@@ -22,7 +22,9 @@ jobs:
 
   
     - name: Build jar
-      run: ./mvnw clean package -DskipTests
+      run: |
+       chmod +x ./mvnw
+       ./mvnw clean package -DskipTests
 
   
     - name: Login to Docker Hub
