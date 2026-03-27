@@ -4,6 +4,11 @@
 
 👉 http://ec2-65-2-9-60.ap-south-1.compute.amazonaws.com:9090/
 
+
+
+<img width="1676" height="675" alt="trackit_flow_diagram" src="https://github.com/user-attachments/assets/fc697aaa-dffe-4da9-9fe9-84a57772777b" />
+
+
 📌 Project Overview
 
 TrackIt is a Spring Boot-based Todo Application deployed on AWS using a fully automated CI/CD pipeline.
