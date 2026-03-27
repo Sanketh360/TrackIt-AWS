@@ -26,11 +26,17 @@ CI/CD: GitHub Actions
 Build Tool: Maven
 ⚙️ Features
 ✅ REST API for Todo Management
+
 ✅ Dockerized Spring Boot Application
+
 ✅ Automated CI/CD Pipeline
+
 ✅ Secure Environment Variables (GitHub Secrets)
+
 ✅ Cloud Deployment on AWS EC2
+
 ✅ Database Integration with AWS RDS
+
 🔄 CI/CD Pipeline Flow
 Push Code → GitHub Actions →
 Build JAR → Build Docker Image →
