@@ -1,4 +1,4 @@
-🚀 # TrackIt - Spring Boot AWS Deployment
+🚀 #TrackIt - Spring Boot AWS Deployment
 🌐 Live Application
 
 👉 http://ec2-65-2-9-60.ap-south-1.compute.amazonaws.com:9090/
