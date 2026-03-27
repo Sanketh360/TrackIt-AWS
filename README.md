@@ -1,91 +1,152 @@
-# TrackIt - Spring Boot AWS Deployment
+# 🚀 TrackIt - Spring Boot AWS Deployment
 
-🌐 Live Application
+## 🌐 Live Application
 
 👉 http://ec2-65-2-9-60.ap-south-1.compute.amazonaws.com:9090/
 
+---
 
+## 🖼️ Architecture Diagram
 
 <img width="1676" height="675" alt="trackit_flow_diagram" src="https://github.com/user-attachments/assets/fc697aaa-dffe-4da9-9fe9-84a57772777b" />
 
+---
 
-📌 Project Overview
+## 📌 Project Overview
 
-TrackIt is a Spring Boot-based Todo Application deployed on AWS using a fully automated CI/CD pipeline.
+TrackIt is a **Spring Boot-based Todo Application** deployed on AWS using a fully automated **CI/CD pipeline**.
 
-This project demonstrates real-world backend + DevOps integration, including containerization, cloud deployment, and database connectivity.
+This project demonstrates **real-world backend + DevOps integration**, including:
 
-🏗️ Architecture
+* Containerization
+* Cloud deployment
+* Database connectivity
+
+---
+
+## 🏗️ Architecture
+
+```
 User → EC2 (Docker Container) → Spring Boot App → AWS RDS (MySQL)
-🛠️ Tech Stack
-Backend: Spring Boot (Java 21)
-Database: AWS RDS (MySQL)
-Containerization: Docker
-Cloud Platform: AWS EC2
-CI/CD: GitHub Actions
-Build Tool: Maven
-⚙️ Features
-✅ REST API for Todo Management
+```
 
-✅ Dockerized Spring Boot Application
+---
 
-✅ Automated CI/CD Pipeline
+## 🛠️ Tech Stack
 
-✅ Secure Environment Variables (GitHub Secrets)
+* **Backend:** Spring Boot (Java 21)
+* **Database:** AWS RDS (MySQL)
+* **Containerization:** Docker
+* **Cloud Platform:** AWS EC2
+* **CI/CD:** GitHub Actions
+* **Build Tool:** Maven
 
-✅ Cloud Deployment on AWS EC2
+---
 
-✅ Database Integration with AWS RDS
+## ⚙️ Features
 
-🔄 CI/CD Pipeline Flow
-Push Code → GitHub Actions →
-Build JAR → Build Docker Image →
-Push to Docker Hub →
-SSH into EC2 →
-Pull Image → Run Container
-🔐 Environment Variables
+* ✅ REST API for Todo Management
+* ✅ Dockerized Spring Boot Application
+* ✅ Automated CI/CD Pipeline
+* ✅ Secure Environment Variables (GitHub Secrets)
+* ✅ Cloud Deployment on AWS EC2
+* ✅ Database Integration with AWS RDS
+
+---
+
+## 🔄 CI/CD Pipeline Flow
+
+```
+Push Code → GitHub Actions
+→ Build JAR → Build Docker Image
+→ Push to Docker Hub
+→ SSH into EC2
+→ Pull Image → Run Container
+```
+
+---
+
+## 🔐 Environment Variables
 
 Sensitive data is managed securely using GitHub Secrets:
 
-SPRING_DATASOURCE_URL
-SPRING_DATASOURCE_USERNAME
-SPRING_DATASOURCE_PASSWORD
-🐳 Docker Setup
-Build Image
+* `SPRING_DATASOURCE_URL`
+* `SPRING_DATASOURCE_USERNAME`
+* `SPRING_DATASOURCE_PASSWORD`
+
+---
+
+## 🐳 Docker Setup
+
+### Build Image
+
+```bash
 docker build -t sanketh1357/spring-boot-trackit:latest .
-Run Container
+```
+
+### Run Container
+
+```bash
 docker run -d -p 9090:9090 \
   -e SPRING_DATASOURCE_URL=<DB_URL> \
   -e SPRING_DATASOURCE_USERNAME=<USERNAME> \
   -e SPRING_DATASOURCE_PASSWORD=<PASSWORD> \
   sanketh1357/spring-boot-trackit:latest
-☁️ AWS Deployment
-EC2 Instance used for hosting the application
-RDS MySQL used as the database
-Security Groups configured for:
-Port 9090 (Application)
-Port 3306 (Database)
-📦 Project Structure
+```
+
+---
+
+## ☁️ AWS Deployment
+
+* EC2 instance used for hosting the application
+* RDS MySQL used as the database
+
+### Security Groups:
+
+* Port **9090** → Application
+* Port **3306** → Database
+
+---
+
+## 📦 Project Structure
+
+```
 ├── src/
 ├── Dockerfile
 ├── pom.xml
 ├── .github/workflows/
 └── README.md
-🚀 How to Run Locally
+```
+
+---
+
+## 🚀 How to Run Locally
+
+```bash
 git clone https://github.com/Sanketh360/TrackIt-AWS.git
 cd TrackIt-AWS
 ./mvnw clean package
 java -jar target/*.jar
-📈 Future Improvements
-🔹 Add Frontend (React / Angular)
-🔹 Add Nginx Reverse Proxy
-🔹 Enable HTTPS (SSL)
-🔹 Implement Monitoring (CloudWatch)
-🔹 Zero-downtime Deployment
-👨‍💻 Author
+```
 
-Sanketh Kottary
+---
 
-⭐ If you like this project
+## 📈 Future Improvements
+
+* 🔹 Add Frontend (React / Angular)
+* 🔹 Add Nginx Reverse Proxy
+* 🔹 Enable HTTPS (SSL)
+* 🔹 Implement Monitoring (CloudWatch)
+* 🔹 Zero-downtime Deployment
+
+---
+
+## 👨‍💻 Author
+
+**Sanketh Kottary**
+
+---
+
+## ⭐ If you like this project
 
 Give it a ⭐ on GitHub!
