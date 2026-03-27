@@ -32,7 +32,7 @@ public class TaskService {
 
     public void toggleTask(Long id) {
         Task task = taskRepository.findById(id)
-                .orElseThrow(()->new IllegalArgumentException("Invadil task id"));
+                .orElseThrow(()->new IllegalArgumentException("wrong tash Id"));
         task.setCompleted(!task.isCompleted());
         taskRepository.save(task);
     }
